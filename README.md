@@ -275,7 +275,8 @@ direction TB
 	    +calculate_total() : float
     }
     class Appetizer {
-	    +is_shared: bool
+	    +is_vegetarian: bool
+		+is_vegan: bool
 	    +calculate_total() : float
     }
     class MainCourse {
