@@ -7,27 +7,27 @@ En este reto se usaran las bases vistas en clase como herencia, composición y e
    
 2. El rectángulo debe inicializarse utilizando cualquiera de estos 3 métodos:
 
-  - Método 1: Esquina inferior izquierda (Punto) + ancho y alto
-  - Método 2: Centro(Punto) + ancho y alto
-  - Método 3: Dos esquinas opuestas (puntos), por ejemplo, inferior izquierda y superior derecha.
+  - **Método 1**: Esquina inferior izquierda (Punto) + ancho y alto
+  - **Método 2**: Centro(Punto) + ancho y alto
+  - **Método 3**: Dos esquinas opuestas (puntos), por ejemplo, inferior izquierda y superior derecha.
     ancho , alto , centro: atributos de instancia
 
-  - compute_area(): debe devolver el área del rectángulo
-  - compute_perimeter(): debe devolver el perímetro del rectángulo
+  - **compute_area()**: debe devolver el área del rectángulo
+  - **compute_perimeter()**: debe devolver el perímetro del rectángulo
 
-3. Cree una clase Square() que herede los atributos y métodos necesarios de Rectangle.
+3. Cree una clase **Square()** que herede los atributos y métodos necesarios de Rectangle.
    
-4. Cree un método llamado compute_interference_point(Point) que devuelva si un punto está dentro de un rectángulo.
+4. Cree un método llamado **compute_interference_point(Point)** que devuelva si un punto está dentro de un rectángulo.
 
 5. La linea debe inicializarse con las siguientes carácteristicas y metodos.
 
-  - length, slope, start, end: atributos de instancia, dos de ellos son puntos (por lo que una línea se compone al menos de dos puntos).
-  - compute_length(): debe devolver la longitud de la línea
-  - compute_slope(): debe devolver la pendiente de la línea desde la horizontal en grados.
-  - compute_horizontal_cross(): debe devolver si existe la intersección con el eje x
-  - compute_vertical_cross(): debe devolver si existe la intersección con el eje y
+  - **length, slope, start, end**: atributos de instancia, dos de ellos son puntos (por lo que una línea se compone al menos de dos           puntos).
+  - **compute_length()**: debe devolver la longitud de la línea
+  - **compute_slope()**: debe devolver la pendiente de la línea desde la horizontal en grados.
+  - **compute_horizontal_cross()**: debe devolver si existe la intersección con el eje x
+  - **compute_vertical_cross()**: debe devolver si existe la intersección con el eje y
     
-6. Redefinir la clase Rectángulo, agregando un nuevo método de inicialización utilizando 4 Líneas (la composición en su mejor expresión, un rectángulo se compone de 4 líneas).
+6. Redefinir la clase **Rectángulo**, agregando un nuevo método de inicialización utilizando 4 Líneas (la composición en su mejor expresión, un rectángulo se compone de 4 líneas).
 
 # Código:
 
@@ -250,8 +250,49 @@ print(f"El perímetro del cuadrado es: {perimeter_square}")
 
 1. Escenario de restaurante: desea diseñar un programa para calcular la factura del pedido de un cliente en un restaurante.
  
-  - Definir una clase base MenuItem : Esta clase debe tener atributos como nombre, precio y un método para calcular el precio total.
-  - Cree subclases para diferentes tipos de elementos de menú: herede de MenuItem y defina propiedades específicas para cada tipo (por        ejemplo, Bebida, Aperitivo, Plato principal).
-  - Definir una clase Order: Esta clase debe tener una lista de objetos MenuItem y métodos para agregar artículos, calcular el monto          total de la factura y potencialmente aplicar descuentos específicos según la composición del pedido.
+  - **Definir una clase base MenuItem**: Esta clase debe tener atributos como nombre, precio y un método para calcular el precio total.
+  - **Cree subclases para diferentes tipos de elementos de menú**: herede de MenuItem y defina propiedades específicas para cada tipo         (por ejemplo, Bebida, Aperitivo, Plato principal).
+  - **Definir una clase Order**: Esta clase debe tener una lista de objetos MenuItem y métodos para agregar artículos, calcular el monto      total de la factura y potencialmente aplicar descuentos específicos según la composición del pedido.
 
 Cree un diagrama de clases con todas las clases y sus relaciones. El menú debe tener al menos 10 elementos. El código debe seguir las reglas PEP8.
+
+# Diagrama: 
+
+```mermaid
+--- 
+config:
+  theme: dark
+---
+classDiagram
+direction TB
+    class MenuItem {
+	    +name: String
+	    +price: float
+	    +calculate_total() : float
+    }
+    class Beverage {
+	    +size: String
+	    +calculate_total() : float
+    }
+    class Appetizer {
+	    +is_shared: bool
+	    +calculate_total() : float
+    }
+    class MainCourse {
+	    +side_dish: String
+	    +calculate_total() : float
+    }
+    class Order {
+	    +items: List~MenuItem~
+	    +add_item(item: MenuItem)
+	    +calculate_total() : float
+	    +apply_discount() : float
+    }
+
+    MenuItem <|-- Beverage
+    MenuItem <|-- Appetizer
+    MenuItem <|-- MainCourse
+    Order "1" --* "*" MenuItem : contiene
+```
+
+# Código:
